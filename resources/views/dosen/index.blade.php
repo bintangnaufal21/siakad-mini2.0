@@ -1,0 +1,61 @@
+<x-layoutAdmin>
+    <section class="content-header">
+        <h1>Data Dosen</h1>
+    </section>
+
+    <section class="content">
+        <div class="card">
+            <div class="card-header">
+                <a href="/data-dosen/create" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Tambah Dosen
+                </a>
+            </div>
+
+            <div class="card-body">
+                {{-- ALERT SUCCESS --}}
+                @if (session('success'))
+                    <div class="alert alert-success">{{ session('success') }}</div>
+                @endif
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>NIP</th>
+                            <th>Email</th>
+                            <th>No Telepon</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($dataDosen as $data)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $data->name }}</td>
+                                <td>{{ $data->npm }}</td>
+                                <td>{{ $data->email }}</td>
+                                <td>{{ $data->no_telepon }}</td>
+                                <td>
+                                   <a href="{{ route('editDosen', $data->id) }}" class="btn btn-warning btn-sm">
+                                        <i class="fas fa-edit"></i></a>
+                                   <form action="{{ route('deleteDosen', $data->id) }}" method="POST" style="display:inline-block"
+                                        onsubmit="return confirm('Hapus dosen ini?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger btn-sm">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td class="text-center" colspan="6">Data belum ada</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</x-layoutAdmin>
