@@ -81,14 +81,14 @@ class MahasiswaController extends Controller
 
         $validated = $request->validate([
             'name' => 'required|string|max:40',
-            'npm' => 'required|string|max:12|unique:users,npm,' . $mahasiswa->id,
+            'npm' => 'required|string|max:20|unique:users,npm,' . $mahasiswa->id,
             'email' => 'required|email|unique:users,email,' . $mahasiswa->id,
             'no_telepon' => 'required|string|max:12',
             'password' => 'nullable|string|min:6|confirmed',
         ], [
             // Custom Messages
             'name.required' => 'Nama wajib diisi.',
-            'name.max' => 'Nama tidak boleh lebih dari 40 karakter.',
+            'name.max' => 'Nama tidak boleh lebih dari 20 karakter.',
             'npm.required' => 'NPM wajib diisi.',
             'npm.string' => 'NPM harus berupa angka.',
             'npm.max' => 'Npm tidak boleh lebih dari 20 karakter.',

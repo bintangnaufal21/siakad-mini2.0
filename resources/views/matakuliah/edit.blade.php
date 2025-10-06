@@ -60,7 +60,7 @@
                         <div class="col-6">
                             <div class="form-group mb-3">
                                 <label>Dosen Pengampu</label>
-                                <select name="dosen_id" id="dosen_id" class="form-select">
+                                <select name="dosen_id" id="dosen_id" class="form-control">
                                     <option value="">-- Pilih Dosen --</option>
                                     @foreach ($dosen as $dosen)
                                         <option value="{{ $dosen->id }}"

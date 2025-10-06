@@ -12,7 +12,7 @@
                         <div class="col-md-12">
                             <div class="form-group mb-3">
                                 <label for="mata_kuliah_id">Mata Kuliah</label>
-                                <select name="mata_kuliah_id" id="mata_kuliah_id" class="form-select @error('mata_kuliah_id') is-invalid @enderror" required>
+                                <select name="mata_kuliah_id" id="mata_kuliah_id" class="form-control @error('mata_kuliah_id') is-invalid @enderror" required>
                                     <option value="" disabled selected>-- Pilih Mata Kuliah --</option>
                                     @foreach ($dataMataKuliah as $mk)
                                         <option value="{{ $mk->id }}" {{ old('mata_kuliah_id') == $mk->id ? 'selected' : '' }}>
@@ -29,7 +29,7 @@
                         <div class="col-md-6">
                             <div class="form-group mb-3">
                                 <label for="hari">Hari</label>
-                                <select name="hari" id="hari" class="form-select @error('hari') is-invalid @enderror" required>
+                                <select name="hari" id="hari" class="form-control @error('hari') is-invalid @enderror" required>
                                     <option value="" disabled selected>-- Pilih Hari --</option>
                                     <option value="Senin" {{ old('hari') == 'Senin' ? 'selected' : '' }}>Senin</option>
                                     <option value="Selasa" {{ old('hari') == 'Selasa' ? 'selected' : '' }}>Selasa</option>
