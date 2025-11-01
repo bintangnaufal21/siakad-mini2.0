@@ -13,6 +13,7 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
+        
         // hanya ambil user dengan role mahasiswa
         $dataMahasiswa = User::where('role', 'mahasiswa')->orderBy('npm')->get();
         return view('mahasiswa.index', compact('dataMahasiswa'));

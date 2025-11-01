@@ -1,14 +1,23 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MataKuliahController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\JadwalKuliahController;
+use Illuminate\Container\Attributes\Auth;
 
-Route::get('/', function () {
-    return view('auth.login');
-})->name('login');
+
+//Route Login
+Route::get('/', [AuthController::class, 'index'])->name('login');
+Route::post('/login', [AuthController::class, 'store'])->name('login.store');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/forgot-password', [AuthController::class, 'showForgotPasswordForm'])->name('password.request');
+Route::post('/forgot-password', [AuthController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('/reset-password/{token}', [AuthController::class, 'showResetPasswordForm'])->name('password.reset');
+Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('password.update');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
